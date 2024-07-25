@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web/dist/ort.min.js"></script>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>ScanCov - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+ <!-- Favicons -->
+ <link href="assets/img/Screenshot 2024-02-19 at 9.23.15 PM.png" rel="icon">
+ <link href="assets/img/Screenshot 2024-02-19 at 9.23.15 PM.png" rel="apple-touch-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+  <!-- Include Font Awesome library -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+
+  <style>
+    /* Custom CSS styles */
+    .container {
+      margin-top: 100px; /* Adjust the top margin to center the box vertically */
+    }
+    .diagnosis-box {
+      background-color: #f8f9fa; /* Light gray background color */
+      padding: 20px; /* Padding around the box */
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
+    }
+    .progress-bar {
+      display: none;
+      width: 100%;
+      height: 20px;
+      background-color: #f3f3f3;
+      border-radius: 10px;
+      overflow: hidden;
+      margin-top: 20px;
+    }
+    .progress-bar-inner {
+      width: 0;
+      height: 100%;
+      background-color:rgb(155, 215, 255);
+      text-align: center;
+      line-height: 20px;
+      color: white;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+
+  <header id="header" class="header d-flex align-items-center">
+
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <h1>ScanCov<span>.</span></h1>
+      </a>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="upload.html">Home</a></li>
+          <li><a href="login.html">Log Out</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+    </div>
+  </header><!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <div class="container">
+    <div class="row d-flex justify-content-center">
+        <div class="col-md-6">
+            <div class="diagnosis-box"> <!-- Container for the diagnosis form -->
+                <h5 class="text-left">New Diagnosis</h5> <!-- Centered heading -->
+                <form>
+                    <div class="mb-3">
+                        <label for="patientIdInput" class="form-label">Patient ID:</label>
+                        <input class="form-control" type="text" id="patientIdInput">
+                    </div>
+                    <div class="mb-3">
+                        <label for="additionalInfoInput" class="form-label">Additional Information:</label>
+                        <textarea class="form-control" id="additionalInfoInput" rows="3"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="fileInput" class="form-label">Choose Image to Upload:</label>
+                        <input id="imageUpload" type="file"  accept="image/*">
+                        <canvas id="canvas" style="display:none;"></canvas> 
+                        <script>
+                          document.getElementById('imageUpload').addEventListener('change', async (event) => {
+
+                           const file = event.target.files[0];
+                          if (!file) return;
+
+                          const img = new Image();
+                          img.src = URL.createObjectURL(file);
+
+                          img.onload = async () => {
+
+                            const canvas = document.getElementById('canvas');
+                            const ctx = canvas.getContext('2d');
+                            canvas.width = 224;
+                            canvas.height = 224;
+
+                            // Draw the image on canvas
+                            ctx.drawImage(img, 0, 0, 224, 224);
+
+                            const imageData = ctx.getImageData(0, 0, 224, 224);
+                            const data = imageData.data;
+
+                            const float32Data = new Float32Array(224 * 224 * 3);
+                            for (let i = 0; i < 224 * 224; i++) {
+                              float32Data[i * 3] = data[i * 4] ;        // R
+                              float32Data[i * 3 + 1] = data[i * 4 + 1] ; // G
+                              float32Data[i * 3 + 2] = data[i * 4 + 2] ; // B
+                            }
+
+                            const inputTensor = new ort.Tensor('float32', float32Data, [ 1 ,224 ,224 , 3]);
+
+                            await loadModelAndRunInference(inputTensor);
+                          };
+                        });
+
+                        async function loadModelAndRunInference(inputTensor) {
+
+                          try {
+
+                            const progressBar = document.getElementById('progressBar');
+                            const progressBarInner = document.getElementById('progressBarInner');
+
+                            progressBar.style.display = 'block';
+
+                            let progress = 0;
+                            const interval = setInterval(() => {
+                              progress += 20;
+                              progressBarInner.style.width = progress + '%';
+                              progressBarInner.innerText = progress + '%';
+
+                              if (progress >= 100) {
+                                clearInterval(interval);
+                              }
+                            }, 100);
+
+
+                            const session = await ort.InferenceSession.create('./model.onnx',
+                            {
+                              executionProviders: ["webgl"],
+                            }
+                            );
+
+                            const inputName = session.inputNames[0];
+  
+                            const feeds = {};
+
+                            feeds[inputName] = inputTensor;
+
+                            const output = await session.run(feeds);
+
+                            const outputTensor = output[session.outputNames[0]];
+
+                            console.log(`Model output tensor: ${outputTensor.data}`);
+
+                            const outputData = Array.from(outputTensor.data); 
+
+                            const predictedClassIndex = outputData.indexOf(Math.max(...outputData));
+
+                            const classNames = ['COVID', 'Lung_Opacity', 'Normal', 'Viral Pneumonia'];
+
+                            const predictedClassName = classNames[predictedClassIndex ];
+
+                            const nextPageUrl = `results.html?predictedClass=${encodeURIComponent(predictedClassName)}`;
+
+                            window.location.href = nextPageUrl;
+
+                          } catch (error) {
+                            console.error('Error during model inference:', error);
+                          }
+                        }
+
+                        </script>
+                      </div>
+                    <button type="button" class="btn btn-primary download-button custom-button">Get Diagnosis</button>
+                </form>
+                <div class="progress-bar" id="progressBar">
+                  <div class="progress-bar-inner" id="progressBarInner">0%</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- End Hero Section -->
+<style>
+    .custom-button {
+      background-color: #a5c6f0;
+      border-color: #8FB8ED;
+      color: #fff;
+    }
+  </style>
+<main id="main">
+
+
+</main><!-- End #main -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+<!-- ======= Footer ======= -->
+<footer id="footer" class="footer">
+
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-lg-5 col-md-12 footer-info">
+        <a href="index.html" class="logo d-flex align-items-center">
+          <span>ScanCov</span>
+        </a>
+        <p>Unleashing Unparalleled Precision in Respiratory Imaging; Elevate Diagnostic Confidence; Redefine Excellence in Patient Care.</p>
+
+      </div>
+
+
+
+      <div class="container mt-4">
+        <div class="copyright">
+          &copy; Copyright <strong><span>ScanCov</span></strong>. All Rights Reserved
+        </div>
+        <div class="credits">
+         Designed by <a href="https://bootstrapmade.com/">F3 group</a>
+        </div>
+      </div>
+
+</footer><!-- End Footer -->
+<!-- End Footer -->
+
+<a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+<div id="preloader"></div>
+
+<!-- Vendor JS Files -->
+<script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="assets/vendor/aos/aos.js"></script>
+<script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+<script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+<script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+<script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+<script src="assets/vendor/php-email-form/validate.js"></script>
+
+<!-- Template Main JS File -->
+<script src="assets/js/main.js" type="text/javascript"></script>
+<style>
+  .custom-button {
+    background-color: #a5c6f0;
+    border-color: #8FB8ED;
+    color: #fff;
+  }
+</style>

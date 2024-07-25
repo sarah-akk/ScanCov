@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Include necessary CSS files and libraries -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>ScanCov - Password Changed Successfully</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <link href="assets/css/main.css" rel="stylesheet">
+
+
+
+  <style>
+    /* Custom CSS styles */
+    body {
+      background-color: #f8f9fa; /* Light gray background color */
+      font-family: 'Open Sans', sans-serif;
+      color: #333; /* Text color */
+    }
+
+    .container {
+      margin-top: 100px; /* Adjust the top margin to center the box vertically */
+    }
+
+    .diagnosis-box {
+      background-color: #fff; /* White background color */
+      padding: 20px; /* Padding around the box */
+      border-radius: 10px; /* Rounded corners */
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Box shadow */
+    }
+
+    .go-back-button {
+      background-color: #8fb8ed; /* Button background color */
+      border-color: #8fb8ed; /* Button border color */
+      color: #fff; /* Button text color */
+      border-radius: 20px; /* Button border radius */
+      padding: 10px 20px; /* Button padding */
+      text-decoration: none; /* Remove underline from link */
+      display: inline-block; /* Make it inline block */
+      margin-top: 20px; /* Add some top margin */
+    }
+
+    .go-back-button:hover {
+      background-color: #6f9ddc; /* Button background color on hover */
+      border-color: #6f9ddc; /* Button border color on hover */
+    }
+  </style>
+</head>
+
+<body>
+  <header id="header" class="header d-flex align-items-center">
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <a href="index.html" class="logo d-flex align-items-center">
+        <h1>ScanCov<span>.</span></h1>
+      </a>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="login.html">Home</a></li>
+          <li><a href="login.html">Log Out</a></li>
+        </ul>
+      </nav><!-- .navbar -->
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+    </div>
+  </header><!-- End Header -->
+  
+  <div class="container mt-5">
+    <div class="row justify-content-center">
+      <div class="col-md-6">
+        <br> <br> <br> <br>
+        <h1>Diagnosis is:</h1>
+        <div class="diagnosis-box">
+            <h2 id="result" class="text-center"></h2>
+            <script>
+              document.addEventListener("DOMContentLoaded", function() {
+                const urlParams = new URLSearchParams(window.location.search);
+                const predictedClass = urlParams.get('predictedClass');
+                document.getElementById("predicted-class").innerText = `${predictedClass}`;
+              });
+            </script>
+            <p id="predicted-class" style="font-weight: bold;font-size: large; color: midnightblue;"></p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  
+</body>
+
+</html>

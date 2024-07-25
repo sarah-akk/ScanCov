@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>ScanCov  - Index</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+   <!-- Favicons -->
+   <link href="assets/img/Screenshot 2024-02-19 at 9.23.15 PM.png" rel="icon">
+   <link href="assets/img/Screenshot 2024-02-19 at 9.23.15 PM.png" rel="apple-touch-icon">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+
+      <!-- Include Font Awesome library -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600;1,700&family=Montserrat:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Raleway:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/aos/aos.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="assets/css/main.css" rel="stylesheet">
+
+  <!-- =======================================================
+  * Template Name: Impact
+  * Updated: Jan 09 2024 with Bootstrap v5.3.2
+  * Template URL: https://bootstrapmade.com/impact-bootstrap-business-website-template/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+
+
+  <header id="header" class="header d-flex align-items-center">
+
+    <div class="container-fluid container-xl d-flex align-items-center justify-content-between">
+      <a href="auth.html" class="logo d-flex align-items-center">
+        <!-- Uncomment the line below if you also wish to use an image logo -->
+        <!-- <img src="assets/img/logo.png" alt=""> -->
+        <h1>ScanCov<span>.</span></h1>
+      </a>
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a href="auth.html">Home</a></li>
+          <li><a href="login.html">Log Out</a></li>
+          
+          
+      </nav><!-- .navbar -->
+
+      <i class="mobile-nav-toggle mobile-nav-show bi bi-list"></i>
+      <i class="mobile-nav-toggle mobile-nav-hide d-none bi bi-x"></i>
+
+    </div>
+  </header><!-- End Header -->
+  <!-- End Header -->
+
+  <!-- ======= Hero Section ======= -->
+  <section id="hero" class="hero">
+    <div class="container position-relative">
+      <div class="row gy-5" data-aos="fade-in">
+        <div class="col-lg-6 order-2 order-lg-1 d-flex flex-column justify-content-center text-center text-lg-start">
+         
+        </div>
+
+      </div>
+    </div>
+
+    <div class="icon-boxes position-relative">
+      <div class="container position-relative">
+        <div class="row gy-4 mt-5">
+
+        
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Register</a>
+                </li>
+            </ul>
+    
+        </div>
+        </div>
+    </nav>
+
+    <div class="search-container">
+      <input type="text" id="search-bar" placeholder="Search">
+      <br>  <br>
+    </div>
+    <button type="button" class="btn btn-primary download-button  custom-button ">Save Changes</button>
+
+    <style>
+     
+    
+      #search-bar {
+        width: 100%; /* Set the search bar width to 100% of its container */
+        padding: 10px;
+        border: none;
+        border-radius: 20px;
+        font-size: 16px;
+      }
+ 
+    </style>
+   <style>
+    table.table {
+      outline: 2px solid #8FB8ED;
+      outline-offset: -2px;
+    }
+  
+    .delete-button,
+    .edit-button {
+      cursor: pointer;
+      margin-right: 50px;
+
+    }
+  
+  </style>
+  
+
+  
+    <style>
+      table.table {
+        outline: 2px solid #8FB8ED;
+        outline-offset: -2px;
+      }
+  
+      .delete-button,
+      .edit-button {
+        cursor: pointer;
+        margin-right: 50px;
+      }
+    </style>
+  
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">
+          <div class="form-check">
+            <input class="form-check-input" type="checkbox" value="" id="select-all" />
+            <label class="form-check-label" for="select-all">Select All</label>
+          </div>
+        </th>  
+        <th scope="col">Employee ID</th>
+        <th scope="col">First Name</th>
+        <th scope="col">Last Name</th>
+        <th scope="col">Job</th>
+        <th scope="col">Administration</th>
+        <th scope="col">Access</th>
+        <th scope="col">Supervisor ID</th>
+        <th scope="col">Edit or Delete</th>
+      </tr>
+    </thead>
+    <tbody id="data-list">
+    </tbody>
+  </table>
+
+  
+    <!-- Include Font Awesome library script -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
+ 
+
+
+
+          
+
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </section>
+  <!-- End Hero Section -->
+
+  <main id="main">
+
+
+  </main><!-- End #main -->
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://kit.fontawesome.com/your-font-awesome-kit.js" crossorigin="anonymous"></script>
+  <!-- ======= Footer ======= -->
+  <footer id="footer" class="footer">
+
+    <div class="container">
+      <div class="row gy-4">
+        <div class="col-lg-5 col-md-12 footer-info">
+          <a href="index.html" class="logo d-flex align-items-center">
+            <span>ScanCov</span>
+          </a>
+          <p>Unleashing Unparalleled Precision in Respiratory Imaging; Elevate Diagnostic Confidence; Redefine Excellence in Patient Care.</p>
+
+        </div>
+
+
+
+    <div class="container mt-4">
+      <div class="copyright">
+        &copy; Copyright <strong><span>ScanCov</span></strong>. All Rights Reserved
+      </div>
+      <div class="credits">
+        <!-- All the links in the footer should remain intact. -->
+        <!-- You can delete the links only if you purchased the pro version. -->
+        <!-- Licensing information: https://bootstrapmade.com/license/ -->
+        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/impact-bootstrap-business-website-template/ -->
+        Designed by <a href="https://bootstrapmade.com/">F3 group</a>
+      </div>
+    </div>
+
+  </footer><!-- End Footer -->
+  <!-- End Footer -->
+
+  <a href="#" class="scroll-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+  <div id="preloader"></div>
+
+  <!-- Vendor JS Files -->
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+  <style>
+    .custom-button {
+        background-color: #a5c6f0;
+        border-color: #8FB8ED;
+        color: #fff;
+    }
+</style>
+
+<script>
+
+  const loadAll = async () => {
+    try {
+      const response = await fetch(`/emp-data?offset=0&limit=9999`); // Set a large limit to load all rows
+      const data = await response.json();
+      const dataList = document.getElementById('data-list');
+      data.forEach((row) => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <th scope="row">
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" value="" />
+            </div>
+          </th> 
+          <td>${row.EmpID}</td>
+          <td>${row.FirstName}</td>
+          <td>${row.LastName}</td>
+          <td>${row.Job}</td>
+          <td>${row.Administration}</td>
+          <td>${row.Access}</td>
+          <td>${row.supervisorId}</td>
+          <td>
+  <span class="edit-button"><i class="fas fa-pencil-alt"></i></span>
+  <span class="delete-button"><i class="fas fa-trash-alt"></i></span>
+</td>
+        `;
+  
+        dataList.appendChild(tr);
+      });
+    } catch (error) {
+      console.error('Error fetching data:', error);
+    }
+  };
+
+  document.addEventListener('DOMContentLoaded', loadAll);
+</script>
+ <script>
+  document.querySelectorAll('.edit-button').forEach(button => {
+  button.addEventListener('click', function() {
+    const editContainer = this.parentElement.previousElementSibling;
+    editContainer.style.display = 'block';
+    this.style.display = 'none'; // Hide the pencil icon
+    editContainer.querySelector('.save-button').removeAttribute('disabled'); // Enable the save button
+  });
+});
+
+document.querySelectorAll('.save-button').forEach(button => {
+  button.addEventListener('click', function() {
+    const tr = this.closest('tr');
+    const empId = tr.querySelector('td:nth-child(2)').textContent; // Assuming Employee ID is in the second column
+    const roles = Array.from(tr.querySelector('.roles').selectedOptions).map(option => option.value);
+    const role = tr.querySelector('.role').value;
+    console.log(`Saving changes for Employee ID ${empId}:`);
+    console.log('Roles:', roles);
+    console.log('Role:', role);
+    // Add logic to save changes to the database
+  });
+});
+
+ </script>
+
+
+<script>
+  //search function
+  const filterTable = () => {
+    const searchText = document.getElementById('search-bar').value.toLowerCase();
+    const rows = document.querySelectorAll('#data-list tr');
+
+    rows.forEach(row => {
+      const EmpID = row.querySelector('td:nth-child(2)').textContent.toLowerCase();
+      const firstName = row.querySelector('td:nth-child(3)').textContent.toLowerCase();
+      const lastName = row.querySelector('td:nth-child(4)').textContent.toLowerCase();
+      const Job = row.querySelector('td:nth-child(5)').textContent.toLowerCase();
+      const Administration = row.querySelector('td:nth-child(6)').textContent.toLowerCase();
+      const supervisorId = row.querySelector('td:nth-child(7)').textContent.toLowerCase();
+
+      if (EmpID === searchText || firstName === searchText || lastName === searchText || Job === searchText || Administration === searchText || supervisorId === searchText) {
+        row.style.display = '';
+      } else {
+        row.style.display = 'none';
+      }
+    });
+  };
+
+  document.getElementById('search-bar').addEventListener('input', filterTable);
+</script>
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const table = document.querySelector('table');
+    const selectAllCheckbox = document.getElementById('select-all');
+
+    table.addEventListener('change', function(event) {
+      const target = event.target;
+      if (target.type === 'checkbox' && target !== selectAllCheckbox) {
+        // Stop event propagation to prevent "Select All" checkbox from being toggled
+        event.stopPropagation();
+      }
+    });
+
+    selectAllCheckbox.addEventListener('change', function() {
+      const checkboxes = document.querySelectorAll('tbody input[type="checkbox"]');
+      checkboxes.forEach((checkbox) => {
+        checkbox.checked = selectAllCheckbox.checked;
+      });
+    });
+
+    const selectElements = document.querySelectorAll('select');
+    selectElements.forEach((selectElement) => {
+      selectElement.addEventListener('change', function () {
+        const selectedOptions = Array.from(this.selectedOptions).map((option) => option.value);
+        console.log(selectedOptions);
+      });
+    });
+  });
+</script>
+
+</body>
+
+</html>
